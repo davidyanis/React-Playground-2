@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from './layout';
+import { BrowserRouter} from 'react-router-dom'
 
 /**
  * Application top level component. This is a good place for future
@@ -7,5 +8,9 @@ import Layout from './layout';
  */
 export default function App() {
 
-    return <Layout/>;
+    return (
+        <BrowserRouter>
+            <Layout/>
+        </BrowserRouter>
+    )
 }

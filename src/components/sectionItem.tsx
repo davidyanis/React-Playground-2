@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { centeredContent } from '../css';
 import { View } from './layout';
+import { Link } from 'react-router-dom';
 
 interface Props {
     view: View
@@ -16,10 +17,14 @@ export default function SectionItem(props: Props) {
     }
 
     return (
-        <div style={{ ...gridItem, ...centeredContent }} onClick={handelOnlick} >
-            <img src={imageSrc} style={fullscreen} />
-            <h1 style={{ ...centeredAbsolute, ...appearance}}>{props.view}</h1>
-        </div>
+        <Link 
+        to={"/" + props.view} 
+        style={{ ...gridItem, ...centeredContent }} 
+        onClick={handelOnlick} >
+
+        <img src={imageSrc} style={fullscreen} />
+        <h1 style={{ ...centeredAbsolute, ...appearance}}>{props.view}</h1>
+        </Link>
     );
 }
 

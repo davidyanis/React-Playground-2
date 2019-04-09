@@ -6,7 +6,7 @@ interface Props {
 }
 export default function DetailView(props: Props) {
 
-    const imageSource = '../../assets/${props.view}.jpg'
+    const imageSource = `../../assets/${props.view}.jpg`
 
     return (
         <div style={root}>

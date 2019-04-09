@@ -14,10 +14,10 @@ export default function ViewContainer(props: Props) {
 
     return (
         <div style={container}>
-            if (props.view === "main" ? 
-                <MainView onSectionItemClick={props.onSectionItemClick} />
+            {props.view === "Main" ? 
+                <MainView onSectionItemClick={props.onSectionItemClick} /> :
                 <DetailView view={props.view} />
-            )
+            }
         </div>
         
     );
