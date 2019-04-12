@@ -5,22 +5,16 @@ import { Link } from 'react-router-dom';
 
 interface Props {
     view: View
-    onClick: (view: View) => void
 }
 /** React function component */
 export default function SectionItem(props: Props) {
     const imageSrc = `../assets/${props.view}.jpg`;
 
-    const handelOnlick = function(){
-        props.onClick(props.view)
-
-    }
-
     return (
         <Link 
         to={"/" + props.view} 
         style={{ ...gridItem, ...centeredContent }} 
-        onClick={handelOnlick} >
+        >
 
         <img src={imageSrc} style={fullscreen} />
         <h1 style={{ ...centeredAbsolute, ...appearance}}>{props.view}</h1>

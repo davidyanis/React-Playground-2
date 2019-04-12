@@ -1,12 +1,12 @@
-import React, { CSSProperties } from 'react';
-import SectionItem from './sectionItem';
+import React, { CSSProperties, Suspense, lazy } from 'react';
 import { checkPropTypes } from 'prop-types';
 import { View } from './layout';
+import Spinner from './spinner';
+
+const SectionItem = lazy(() => import('./sectionItem'));
 
 
-interface Props {
-    onSectionItemClick: (view: View) => void
-}
+interface Props {}
 
 /** React function component */
 export default function MainView(props: Props) {
@@ -14,11 +14,12 @@ export default function MainView(props: Props) {
     const sectionIds: View[] = ['Forest', 'Sky', 'Desert'];
 
     return (
+        <Suspense fallback={<Spinner/>}>
         <div style={container}>
             {sectionIds.map((value) =>
-            <SectionItem key={value} view={value} onClick={props.onSectionItemClick}/>)}
-        
+            <SectionItem key={value} view={value} />)}
         </div>
+        </Suspense>
     );
 }
 

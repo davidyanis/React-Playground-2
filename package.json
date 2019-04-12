@@ -5,7 +5,7 @@
   "scripts": {
     "app": "npm-run-all --parallel build-watch live-server",
     "build-watch": "webpack-cli --watch",
-    "live-server": "live-server",
+    "live-server": "live-server --entry-file=index.html --no-browser",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Jensen",
@@ -17,7 +17,8 @@
     "live-server": "^1.2.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-spinners": "^0.5.1"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",

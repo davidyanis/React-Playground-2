@@ -1,7 +1,9 @@
-import React from 'react';
-import Layout from './layout';
-import { BrowserRouter} from 'react-router-dom'
+import React, { Suspense, lazy } from 'react';
 
+import {BrowserRouter} from 'react-router-dom';
+import Spinner from './spinner';
+
+const Layout = lazy(() => import('./layout'));
 /**
  * Application top level component. This is a good place for future
  * top level components - ErrorBoundary, Provider & Suspense, etc.
@@ -9,8 +11,10 @@ import { BrowserRouter} from 'react-router-dom'
 export default function App() {
 
     return (
-        <BrowserRouter>
-            <Layout/>
-        </BrowserRouter>
+        <Suspense fallback={<Spinner/>}>
+            <BrowserRouter>
+                <Layout/>
+            </BrowserRouter>
+        </Suspense>
     )
 }

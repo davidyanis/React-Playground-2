@@ -1,25 +1,29 @@
-import React, { CSSProperties } from 'react';
-import MainView from './mainView';
-import { View } from './layout';
-import DetailView from './detailView';
+import React, { CSSProperties, Suspense, lazy } from 'react';
+import { Route } from 'react-router';
+import Spinner from './spinner';
+import ErrorBoundary from './errorboundary';
+import { checkPropTypes } from 'prop-types';
 
-interface Props {
-    onSectionItemClick: (view: View) => void
-    view: View
-}
+
+const DetailView = lazy(() => import('./detailView'));
+const MainView = lazy(() => import('./mainView'));
 
 
 /** React function component */
-export default function ViewContainer(props: Props) {
+export default function ViewContainer() {
 
     return (
-        <div style={container}>
-            {props.view === "Main" ? 
-                <MainView onSectionItemClick={props.onSectionItemClick} /> :
-                <DetailView view={props.view} />
-            }
-        </div>
-        
+        <ErrorBoundary fallbackUI={<Spinner />}>
+        <Suspense fallback={<Spinner/>}>
+            <div style={container}>
+                <Route exact path="/" component={MainView} />
+                <Route path="/forest" render={ () => <DetailView view="Forest"/>} />
+                <Route path="/sky" render={ () => <DetailView view="Sky"/>} />
+                <Route path="/desert" render={ () => <DetailView view="Desert"/>} />
+            </div>
+        </Suspense>
+        </ErrorBoundary>
+
     );
     
 }
