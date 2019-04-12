@@ -1,22 +1,34 @@
 import React, { CSSProperties } from 'react'
+import ReactDOM from 'react-dom'
 import { View } from './layout';
 import Spinner from './spinner';
+import { withRouter } from 'react-router';
 
 
 interface Props {
     view: View
 }
 
-export default function DetailView(props: Props) {
+export default class DetailView extends React.Component<Props, {}> {
     
-    const imageSource = `../../assets/${props.view}.jpg`
+    private imageSource = `../../assets/${this.props.view}.jpg`
+    render () {
+        return (
+            <div style={root}>
+                <img style={image} src={this.imageSource} />
+            {/*  <h1 style={ centeredAbsolute }>{props.view}</h1> */}
+                <button style={ {...centeredAbsolute,  ...buttonStyle } }>Klicka på mig</button>
+            </div>
+        );
+    }
 
-    return (
-        <div style={root}>
-            <img style={image} src={imageSource} />
-            <h1 style={ centeredAbsolute }>{props.view}</h1>
-        </div>
-    );
+    private Child() {
+        return (
+            <div className="modal">
+                <button>Click me</button>
+            </div>
+        )
+    }
 }
 
 const root: CSSProperties = {
@@ -35,4 +47,11 @@ const centeredAbsolute: CSSProperties = {
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)'
+}
+
+const buttonStyle: CSSProperties = {
+    fontSize: '1.5em',
+    padding: '0.5em',
+    backgroundColor: 'white',
+    border: 'none'
 }
